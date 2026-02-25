@@ -1,4 +1,4 @@
-{% set version = "4.5.3" %}
+{% set version = "4.6.0" %}
 {% set name = "cyclopts" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cyclopts-{{ version }}.tar.gz
-  sha256: 35fa70971204c450d9668646a6ca372eb5fa3070fbe8dd51c5b4b31e65198f2d
+  sha256: 483c4704b953ea6da742e8de15972f405d2e748d19a848a4d61595e8e5360ee5
 
 build:
   number: 0
@@ -26,8 +26,8 @@ requirements:
     - rich >=13.6.0
     - docstring_parser >=0.15,<4.0
     - rich-rst >=1.3.1,<2.0.0
-    - typing_extensions >=4.8.0
-    - tomli >=2.0.0
+    - typing_extensions >=4.8.0  # [py<311]
+    - tomli >=2.0.0  # [py<311]
 test:
   requires:
     - pip
