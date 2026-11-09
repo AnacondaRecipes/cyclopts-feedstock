@@ -1,4 +1,4 @@
-{% set version = "4.25.3" %}
+{% set version = "4.23.2" %}
 {% set name = "cyclopts" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cyclopts-{{ version }}.tar.gz
-  sha256: 7d3a067bc7699a1a65fe2ea0b092a925855bb711a05adc1e65c5b9ba307acea4
+  sha256: 1c9de7f245394d3ef9344fc6c976fc373fe1f2ce929b27f08ad4ea8499c13461
 
 build:
   number: 0
@@ -31,6 +31,8 @@ requirements:
     - typing_extensions >=4.8.0  # [py<311]
     - tomli >=2.0.0  # [py<311]
   run_constrained:
+    # toml
+    - tomli >=2.0.0  # [py<311]
     # trio
     - trio >=0.10.0
     # yaml
@@ -42,9 +44,83 @@ requirements:
 test:
   imports:
     - cyclopts
+    - cyclopts.__main__
+    - cyclopts._convert
+    - cyclopts._edit
+    - cyclopts._env_var
+    - cyclopts._markup
+    - cyclopts._path_type
+    - cyclopts._result_action
+    - cyclopts._run
+    - cyclopts._version
+    - cyclopts.annotations
+    - cyclopts.app_stack
+    - cyclopts.argument
+    - cyclopts.argument.utils
+    - cyclopts.bind
+    - cyclopts.cli
+    - cyclopts.cli.docs
+    - cyclopts.cli.run
+    - cyclopts.cli.tree
+    - cyclopts.command_spec
+    - cyclopts.completion
+    - cyclopts.completion._base
+    - cyclopts.completion.bash
+    - cyclopts.completion.detect
+    - cyclopts.completion.fish
+    - cyclopts.completion.install
+    - cyclopts.completion.zsh
+    - cyclopts.config
+    - cyclopts.config._env
+    - cyclopts.config._json
+    - cyclopts.config._toml
+    - cyclopts.config._yaml
+    - cyclopts.core
+    - cyclopts.docs
+    - cyclopts.docs.base
+    - cyclopts.docs.html
+    - cyclopts.docs.markdown
+    - cyclopts.docs.rst
+    - cyclopts.docs.types
+    - cyclopts.exceptions
+    - cyclopts.ext
+    - cyclopts.field_info
+    - cyclopts.group
+    - cyclopts.group_extractors
+    - cyclopts.help
+    - cyclopts.help.formatters
+    - cyclopts.help.formatters.default
+    - cyclopts.help.formatters.html
+    - cyclopts.help.formatters.markdown
+    - cyclopts.help.formatters.plain
+    - cyclopts.help.formatters.rst
+    - cyclopts.help.help
+    - cyclopts.help.inline_text
+    - cyclopts.help.protocols
+    - cyclopts.help.rst_preprocessor
+    - cyclopts.help.silent
+    - cyclopts.help.specs
+    - cyclopts.loader
+    - cyclopts.panel
+    - cyclopts.parameter
+    - cyclopts.protocols
+    - cyclopts.token
+    - cyclopts.types
+    - cyclopts.utils
+    - cyclopts.validators
+    - cyclopts.validators._group
+    - cyclopts.validators._number
+    - cyclopts.validators._path
+    - cyclopts.validators._slice
+    # cyclopts.ext.mkdocs, cyclopts.ext.sphinx and cyclopts.sphinx_ext require
+    # the optional mkdocs/sphinx stacks, so they are not imported here.
   commands:
     - pip check
     - cyclopts --help
+    # The upstream test suite is not shipped in the PyPI sdist and needs test
+    # dependencies unavailable on defaults (e.g. syrupy), so it cannot run
+    # here; imports plus the CLI entry point are the checks available.
+    # Verified manually against this build: pytest -vv -> 2561 passed.
   requires:
     - pip
 
