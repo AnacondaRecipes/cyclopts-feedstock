@@ -31,12 +31,12 @@ requirements:
     - typing_extensions >=4.8.0  # [py<311]
     - tomli >=2.0.0  # [py<311]
   run_constrained:
+    # toml
+    - tomli >=2.0.0  # [py<311]
     # trio
     - trio >=0.10.0
     # yaml
     - pyyaml >=6.0.1
-    # toml
-    - tomli >=2.0.0  # [py<311]
     # debug
     - ipdb >=0.13.9
     - line_profiler >=3.5.1
