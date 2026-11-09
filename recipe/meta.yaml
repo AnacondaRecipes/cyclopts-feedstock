@@ -1,4 +1,4 @@
-{% set version = "4.25.3" %}
+{% set version = "4.23.2" %}
 {% set name = "cyclopts" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cyclopts-{{ version }}.tar.gz
-  sha256: 7d3a067bc7699a1a65fe2ea0b092a925855bb711a05adc1e65c5b9ba307acea4
+  sha256: 1c9de7f245394d3ef9344fc6c976fc373fe1f2ce929b27f08ad4ea8499c13461
 
 build:
   number: 0
@@ -45,6 +45,8 @@ test:
   commands:
     - pip check
     - cyclopts --help
+    # Upstream test suite is not shipped in the PyPI sdist, so it cannot be
+    # run here; smoke tests above cover imports and the CLI entry point.
   requires:
     - pip
 
